@@ -6,19 +6,17 @@ Author: Jessica Parker
 Links and Resources
 ci/cd (GitHub Actions)
 back-end server url (when applicable)
-front-end application (when applicable)
-Setup
-.env requirements (where applicable)
-i.e.
 
-PORT - Port Number
-DATABASE_URL - URL to the running Postgres instance/db
-How to initialize/run your application (where applicable)
-e.g. npm start
-How to use your library (where applicable)
+PORT - 3000
+DATABASE_URL - postgres://localhost:5432/samplepeopledb
+
+npm run start
+npm run dev
+npm run test
+
 Tests
 How do you run tests?
-Any tests of note?
-Describe any tests that you did not complete, skipped, etc
-UML
-Link to an image of the UML for your application and response to events
+npm run test to verify correct reponse from route.
+
+Deployed Heroku
+https://parker-express-production.herokuapp.com/
