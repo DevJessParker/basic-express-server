@@ -23,9 +23,11 @@ let sequelize = new Sequelize(POSTGRES_URI, sequelizeOptions);
 
 
 const people = require('./people.model.js');
+const book = require('./book.model.js');
 
 
 module.exports = {
   db: sequelize,
-  People: people(sequelize, DataTypes)
+  People: people(sequelize, DataTypes),
+  Book: book(sequelize, DataTypes)
 }
