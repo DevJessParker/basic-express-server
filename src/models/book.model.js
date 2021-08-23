@@ -1,6 +1,6 @@
 'use strict';
 
-const Book = (sequelize, DataTypes) => sequelize.define('Book', {
+const Books = (sequelize, DataTypes) => sequelize.define('Books', {
   isbn: {
     type: DataTypes.STRING,
     allowNull: false
@@ -15,7 +15,7 @@ const Book = (sequelize, DataTypes) => sequelize.define('Book', {
   },
   genre: {
     type: DataTypes.STRING,
-  },
+  }
 });
 
-module.exports = People;
+module.exports = Books;

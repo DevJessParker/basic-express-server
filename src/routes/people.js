@@ -1,4 +1,3 @@
-  
 'use strict';
 
 const express = require('express');
@@ -43,7 +42,7 @@ async function updatePerson(req, res) {
 
 async function deletePerson(req, res) {
   let id = parseInt(req.params.id);
-  let deletedPerson = await Person.destroy({ where: { id: id }});
+  let deletedPerson = await People.destroy({ where: { id: id }});
   res.status(204).json(deletedPerson);
 }
 
