@@ -19,58 +19,39 @@ describe('API SERVER:', () => {
   })
 
   it('should respond with a 404 there is no route found', async () => {
-    await mockRequest.get('/no-route-in-server')
-      .then(results => {
-        expect(results.status).toEqual(404);
-      })
+    let results = await mockRequest.get('/no-route-in-server')
+    expect(results.status).toEqual(404);
   })
 
   it('should create a new person', async () => {
-    await mockRequest.post('/people').send({ firstName: 'test', lastName: 'test last'})
-    .then(results => {
-      expect(results.status).toEqual(201);
+    let results = await mockRequest.post('/people').send({ firstName: 'test', lastName: 'test last'})
+    expect(results.status).toEqual(201);
     })
-  });
 
   it('should get a single person', async () => {
-    await mockRequest.post('/people').send({ firstName: 'test', lastName: 'test last'})
-    .then((results) => {
-      mockRequest.get(`/people/${results.id}`)
-      .then(response => {
-        expect(response.status).toEqual(200);
-      });
-    })
+    let response = await mockRequest.post('/people').send({ firstName: 'test', lastName: 'test last'})
+    let results = await mockRequest.get(`/people/${response.body.id}`)
+    expect(results.status).toEqual(200);
   });
 
   it('should get a list of people', async () => {
     await mockRequest.post('/people').send({ firstName: 'test', lastName: 'test last'})
-    .then(() => {
-      mockRequest.get('/people')
-      .then(response => {
-        expect(response.status).toEqual(200);
-      });
-    })
+    let response = await mockRequest.get('/people')
+    expect(response.status).toEqual(200);
   });
+  
+  it('should update a person', async () => {
+    let results = await mockRequest.post('/people').send({ firstName: 'test', lastName: 'test last'})
+    let response = await mockRequest.put(`/people/${results.body.id}`)
+    expect(response.status).toEqual(202);
+  });
+   
 
-  // it('should update a person', async () => {
-  //   await mockRequest.post('/people').send({ firstName: 'test', lastName: 'test last'})
-  //   .then((results) => {
-  //     mockRequest.put(`/people/${results.id}`).send({ firstName: 'Kali'})
-  //       .then(response => {
-  //         expect(response.status).toEqual(202);
-  //     });
-  //   })
-  // });
-
-  // it('should delete a person', async () => {
-  //   await mockRequest.post('/people').send({ firstName: 'test', lastName: 'test last'})
-  //   .then((results) => {
-  //     mockRequest.delete(`/people/${results.id}`)
-  //     .then(response => {
-  //       expect(response.status).toEqual(204);
-  //     });
-  //   })
-  // });
-
+  it('should delete a person', async () => {
+    let results = await mockRequest.post('/people').send({ firstName: 'test', lastName: 'test last'})
+    let response = await mockRequest.delete(`/people/${results.body.id}`)
+    expect(response.status).toEqual(204);
+  });
 })
+  
 
